@@ -1,7 +1,6 @@
 import requests
 from bs4 import*
 import json
-import numpy as np
 import pandas as pd
 a = 'разработчик'
 page = 0
@@ -11,6 +10,7 @@ r = requests.get('https://kazan.hh.ru/search/vacancy?L_is_autosearch=false&area=
 
 r.encoding = 'utf-8'
 t = r.text
+
 soup = BeautifulSoup(t, 'html.parser')
 total_vac = soup.find('h1')
 
@@ -19,7 +19,6 @@ a = 0
 for each_div in soup.find_all(class_ = 'vacancy-serp-item'):
     vac_list.append(each_div)
     a += 1
-print(vac_list)
 
 all_vac_page = []
 for i in range(len(vac_list)):
